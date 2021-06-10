@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Data Coin</title>
+        <link rel="shortcut icon" href="icones/bitcoin.ico" />
+
+        <script type="text/javascript" src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" 
+        integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" 
+        crossorigin="anonymous"></script>
+        <link rel="stylesheet" 
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+        crossorigin="anonymous"/>
+        <link rel="stylesheet" 
+        href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" 
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" 
+        crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Expletus+Sans:wght@500;700&family=Oswald:wght@500&display=swap" rel="stylesheet"> 
+        
+        <script src="script.js">
+        </script>
+        <link rel="stylesheet"
+        href="style.css"/>
+
+    </head>
+    <body>
+        <div class="container container-bitcoin">
+            <div class="row">
+                <div class="col">
+                    <div class="titulo">
+                        <h2>Atualizações do Bitcoin <i class="fab fa-bitcoin"></i></h2>
+                        <button class="btn btn-warning button-modal-notificacao" data-toggle="modal" data-target="#staticBackdrop">Criar notificação de preço</button>
+                    </div>
+                </div>
+            </div>
+            <div class="linha-horizontal"></div>
+            <div class="row">
+                <div class="col-xl-5">
+                    <h1 id="preco-bitcoin">COTAÇÃO ATUAL: R$ </h1>
+                    <h2>Variação das ultimas 24hrs: <span id="variacao-preco-24" class="variacao-preco-24"></span> </h2>
+                    <h3>Maior preço: <span id="maior-preco-24" class="preco-24">R$ </span></h3>
+                    <h3>Menor preço: <span id="menor-preco-24" class="preco-24">R$ </span></h3>
+                </div>
+                <div class="col-xs-7 container-grafico">
+                    <h2>
+                        Gráfico dos ultimos 365 dias:
+                    </h2>
+                    <div id="grafico" >
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">Criar uma notificação de preço</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <label>Insira um valor:</label>
+                    <input id="precoNotificacao" name="precoNotificacao" type="number">
+
+                </div>
+                <div class="modal-footer">
+                    <button onclick="criarNotificacao()" type="button" data-dismiss="modal" class="btn btn-success">Criar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="container container-altcoin">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <button onclick="setAltcoin(0)" class="nav-link active" id="dolar-tab" data-toggle="tab" href="#dolar" role="tab" aria-controls="dolar" aria-selected="true">Dolar <i class="fas fa-dollar-sign"></i></button>
+                </li>
+                <li class="nav-item">
+                    <button onclick="setAltcoin(1)" class="nav-link" id="ether-tab" data-toggle="tab" href="#ether" role="tab" aria-controls="ether" aria-selected="false">Ethereum <img class="ico" src="icones/ether.ico"/> </button> 
+                </li>
+                <li class="nav-item">
+                    <button onclick="setAltcoin(2)" class="nav-link" id="xrp-tab" data-toggle="tab" href="#xrp" role="tab" aria-controls="xrp" aria-selected="false">Xrp <img class="ico" src="icones/xrp.ico"/></button>
+                </li>
+                <li class="nav-item">
+                    <button onclick="setAltcoin(3)" class="nav-link" id="litecoin-tab" data-toggle="tab" href="#litecoin" role="tab" aria-controls="litecoin" aria-selected="false">Litecoin <img class="ico" src="icones/litecoin.ico"/></button>
+                </li>
+                <li class="nav-item">
+                    <button onclick="setAltcoin(4)" class="nav-link" id="dogecoin-tab" data-toggle="tab" href="#dogecoin" role="tab" aria-controls="dogecoin" aria-selected="false">Dogecoin <img class="ico" src="icones/dogecoin.ico"/></button>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="dolar" role="tabpanel" aria-labelledby="dolar-tab">
+                    <div class="altcoin-content">
+                        <h2>Dolar para Real: R$ <span class="preco-altcoin" ></span></h2>
+                        <h2>Variação das ultimas 24hrs: <span class="variacao-altcoin-24" ></span></h2>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="ether" role="tabpanel" aria-labelledby="ether-tab">
+                    <div class="altcoin-content">
+                        <h2>Ether para Real: R$ <span class="preco-altcoin" ></span></h2>
+                        <h2>Variação das ultimas 24hrs: <span class="variacao-altcoin-24" ></span></h2>
+                        <h2>Página do Etherum: <a href="https://ethereum.org/en/" target="_blank">https://ethereum.org/en/</a></h2>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="xrp" role="tabpanel" aria-labelledby="xrp-tab">
+                    <div class="altcoin-content">
+                        <h2>Xrp para Real: R$ <span class="preco-altcoin" ></span></h2>
+                        <h2>Variação das ultimas 24hrs: <span class="variacao-altcoin-24" ></span></h2>
+                        <h2>Página do XRP: <a href="https://ripple.com/xrp/" target="_blank">https://ripple.com/xrp/</a></h2>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="litecoin" role="tabpanel" aria-labelledby="litecoin-tab">
+                    <div class="altcoin-content">
+                        <h2>Litecoin para Real: R$ <span class="preco-altcoin" ></span></h2>
+                        <h2>Variação das ultimas 24hrs: <span class="variacao-altcoin-24" ></span></h2>
+                        <h2>Página do LiteCoin: <a href="https://litecoin.org/pt/" target="_blank">https://litecoin.org/pt/</a></h2>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="dogecoin" role="tabpanel" aria-labelledby="dogecoin-tab">
+                    <div class="altcoin-content">
+                        <h2>Dogecoin para Real: R$ <span class="preco-altcoin" ></span></h2>
+                        <h2>Variação das ultimas 24hrs: <span class="variacao-altcoin-24" ></span></h2>
+                        <h2>Página do Dogecoin: <a href="https://dogecoin.com/" target="_blank">https://dogecoin.com/</a></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
+            <!-- <div class="toast-header">
+
+                <strong class="mr-auto">Preço de notificação criado</strong>
+                
+            </div> -->
+            <div class="toast-body">
+                
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                Notificação criada com sucesso!</br>
+                Após o preço ser atingido, você receberá uma notificação.
+            </div>
+        </div>
+
+    </body>
+</html>

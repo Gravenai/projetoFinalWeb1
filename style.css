@@ -1,0 +1,109 @@
+body {
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 0;
+    background-image: url("./img/background_2.png");
+}
+
+body {
+    font-family: 'Expletus Sans', cursive;
+}
+
+/* CONTAINER BITCOIN CLASS ----------------------------------------------*/
+
+.container-bitcoin {
+    margin-top: 20px;
+
+    border-radius: 10px;
+    background-color: white;
+    color: #d99325;
+    min-height: 300px;
+
+}
+
+.button-modal-notificacao {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.container-grafico {
+    padding-left: 20px;
+    border-left: 2px solid black;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+.titulo {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.linha-horizontal {
+    border: solid black 1px;
+    border-radius: 20px;
+    margin: 5px;
+}
+
+h1 {
+    font-size: 65px;
+    font-weight: 700px;
+    font-family: 'Oswald', sans-serif;
+    color: black;
+    margin-bottom: 40px;
+    border-radius: 10px;
+}
+
+.preco-24 {
+    color: black;
+}
+
+.variacao-preco-24{
+    font-size: 50px;
+}
+
+.toast {
+    position: fixed;
+    top: 5px;
+    right: 10px;
+    z-index: 1;
+}
+
+.toast .toast-body {
+    background-color: #9bed8c;
+
+}
+
+/* CONTAINER ALTCOINS CLASS ----------------------------------------------*/
+
+.container-altcoin {
+    margin-top: 30px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.nav-link {
+    margin-top: 10px;
+    margin-inline: 4px;
+    background-color: #e2e1e1;
+    font-size: 25px;
+}
+
+.nav-link.active {
+    background-color: #b9b9b9 !important;
+}
+
+.ico {
+    padding: 0;
+    max-width: 30px;
+    max-height: 30px;
+}
+
+.container-altcoin .altcoin-content {
+
+    padding: 10px;
+}
+
+.container-altcoin .altcoin-content h2{
+    font-family: 'Oswald', sans-serif;
+}
